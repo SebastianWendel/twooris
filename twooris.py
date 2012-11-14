@@ -40,18 +40,19 @@ config.read(config_file)
 
 response = urllib2.urlopen(config.get("dooris", "dooris_url"))
 html = response.read()
+html_lines = html.splitlines()
 
 if os.path.exists(semaphore):
   file_input = open(semaphore, "r+")
   input_str = file_input.readlines()
   if str(input_str[0]) != '':
-    if 'locked' in input_str[0]:
+    if not html_lines[0] in input_str[0]:
       print input_str[0]
   file_input.close()
-else:
-  file_input = open(semaphore, "wb")
-  file_input.write(html);
-  file_input.close()
+
+file_input = open(semaphore, "wb")
+file_input.write(html);
+file_input.close()
 
 '''
   test_string = file_input.read();
