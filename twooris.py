@@ -30,12 +30,10 @@ semaphore       = '/tmp/twooris'
 
 ###############################################################################################
 
+import os
 import ConfigParser
 import urllib2
 import twitter
-import os.path
-
-api = twitter.Api()
 
 config = ConfigParser.RawConfigParser(allow_no_value=True)
 config.read(config_file)
@@ -45,25 +43,24 @@ html = response.read()
 
 if os.path.exists(semaphore):
   file_input = open(semaphore, "r+")
-  input_str = file_input.read();
-  if str(input_str) != '':
-    print input_str
+  input_str = file_input.readlines()
+  if str(input_str[0]) != '':
+    if 'locked' in input_str[0]:
+      print input_str[0]
   file_input.close()
 else:
   file_input = open(semaphore, "wb")
   file_input.write(html);
   file_input.close()
 
-
 '''
-
   test_string = file_input.read();
   print test_string
 
 fo.close()
 
+api = twitter.Api()
 api = twitter.Api(consumer_key='consumer_key', consumer_secret='consumer_secret', access_token_key='access_token', access_token_secret='access_token_secret')
-
 
 file_temp = open(temp_folder + '/' + temp_file, "wb")
 file_temp.write(html);
