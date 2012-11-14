@@ -11,7 +11,7 @@ __install__     = """
 https://dev.twitter.com/apps
 
 cat >> twooris.cfg << 'EOF'
-[dooris]                                                                                                                                                   
+[dooris]
 dooris_url          = http://dooris.koalo.de/door.txt
 
 [twitter]
