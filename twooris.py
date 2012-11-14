@@ -26,7 +26,7 @@ sudo aptitude install python-simplejson python-httplib2 python-oauth2 """
 ###############################################################################################
 
 config_file     = "twooris.cfg"
-semaphore       = '/tmp/twooris'
+semaphore_file  = '/tmp/twooris'
 
 ###############################################################################################
 
@@ -42,28 +42,19 @@ response = urllib2.urlopen(config.get("dooris", "dooris_url"))
 html = response.read()
 html_lines = html.splitlines()
 
-if os.path.exists(semaphore):
-  file_input = open(semaphore, "r+")
+api = twitter.Api(consumer_key=config.get("twitter", "consumer_key"), consumer_secret=config.get("twitter", "consumer_secret"), access_token_key=config.get("twitter", "access_token_key"), access_token_secret=config.get("twitter", "access_token_secret"))
+
+if os.path.exists(semaphore_file):
+  file_input = open(semaphore_file, "r+")
   input_str = file_input.readlines()
   if str(input_str[0]) != '':
     if not html_lines[0] in input_str[0]:
-      print input_str[0]
+      status = api.PostUpdate('The door is ' + html_lines[0] + '.')
+      print status.text
   file_input.close()
 
-file_input = open(semaphore, "wb")
+file_input = open(semaphore_file, "wb")
 file_input.write(html);
 file_input.close()
 
-'''
-  test_string = file_input.read();
-  print test_string
-
-fo.close()
-
-api = twitter.Api()
-api = twitter.Api(consumer_key='consumer_key', consumer_secret='consumer_secret', access_token_key='access_token', access_token_secret='access_token_secret')
-
-file_temp = open(temp_folder + '/' + temp_file, "wb")
-file_temp.write(html);
-file_temp.close()
-'''
+###############################################################################################
