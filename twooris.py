@@ -2,44 +2,70 @@
 
 ###############################################################################################
 
-__author__      = "sebastiian wendel"
+__author__      = "sebastian wendel"
 __copyright__   = "copyright 2012, attraktor e.v."
 __license__     = "glp"
 __version__     = "0.0.1"
-__status__      = "production"
-__install__     = "sudo aptitude install python-simplejson python-httplib2 python-oauth2"
+__install__     = """
+
+https://dev.twitter.com/apps
+
+cat >> twooris.cfg << 'EOF'
+[dooris]                                                                                                                                                   
+dooris_url          = http://dooris.koalo.de/door.txt
+
+[twitter]
+consumer_key        =
+consumer_secret     =
+access_token        =
+access_token_secret =
+EOF
+
+sudo aptitude install python-simplejson python-httplib2 python-oauth2 """
 
 ###############################################################################################
 
-dooris_url      = "http://dooris.koalo.de/door.txt"
-temp_folder     = "/tmp"
-temp_file       = "twooris"
-config_file     = "twooris.conf"
+config_file     = "twooris.cfg"
+semaphore       = '/tmp/twooris'
 
 ###############################################################################################
 
+import ConfigParser
 import urllib2
 import twitter
+import os.path
 
 api = twitter.Api()
-response = urllib2.urlopen(dooris_url)
+
+config = ConfigParser.RawConfigParser(allow_no_value=True)
+config.read(config_file)
+
+response = urllib2.urlopen(config.get("dooris", "dooris_url"))
 html = response.read()
 
+if os.path.exists(semaphore):
+  file_input = open(semaphore, "r+")
+  input_str = file_input.read();
+  if str(input_str) != '':
+    print input_str
+  file_input.close()
+else:
+  file_input = open(semaphore, "wb")
+  file_input.write(html);
+  file_input.close()
 
-config = open(temp_folder + '/' + temp_file, "wb")
 
-file_input = open(temp_folder + '/' + temp_file, "wb")
-str = file_temp.read(10);
-print "Read String is : ", str
+'''
+
+  test_string = file_input.read();
+  print test_string
+
 fo.close()
 
 api = twitter.Api(consumer_key='consumer_key', consumer_secret='consumer_secret', access_token_key='access_token', access_token_secret='access_token_secret')
 
 
-
-
-
 file_temp = open(temp_folder + '/' + temp_file, "wb")
 file_temp.write(html);
 file_temp.close()
-
+'''
