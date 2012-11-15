@@ -2,8 +2,6 @@
 
 Twooris is a simple wrapper script for the attraktor dooris door status system to post open or closed status notification on twitter.
 
-<http://dooris.koalo.de>
-
 # Requirements #
 
 There are no special platform dependencies, but you need to install some python librarys.
@@ -40,11 +38,11 @@ Register your new read- and writable application at twitter and keep the tokens 
 
 # Configuration #
 
-Now create the config file and append your twitter tokens.
+Now create the config file, append the dooris.txt url and your twitter tokens.
 
     cat > twooris.cfg << 'EOF'
     [dooris]
-    dooris_url          = http://dooris.koalo.de/door.txt
+    dooris_url          =
  
     [twitter]
     consumer_key        =
