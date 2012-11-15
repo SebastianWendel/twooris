@@ -1,34 +1,12 @@
 #!/usr/bin/env python
 
-###############################################################################################
-
 __author__      = "sebastian wendel"
 __copyright__   = "copyright 2012, attraktor e.v."
 __license__     = "glp"
 __version__     = "0.0.1"
-__install__     = """
-
-https://dev.twitter.com/apps
-
-cat >> twooris.cfg << 'EOF'
-[dooris]
-dooris_url          = http://dooris.koalo.de/door.txt
-
-[twitter]
-consumer_key        =
-consumer_secret     =
-access_token        =
-access_token_secret =
-EOF
-
-sudo aptitude install python-simplejson python-httplib2 python-oauth2 """
-
-###############################################################################################
 
 config_file     = "twooris.cfg"
 semaphore_file  = '/tmp/twooris'
-
-###############################################################################################
 
 import os
 import ConfigParser
@@ -56,5 +34,3 @@ if os.path.exists(semaphore_file):
 file_input = open(semaphore_file, "wb")
 file_input.write(html);
 file_input.close()
-
-###############################################################################################
