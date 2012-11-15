@@ -52,6 +52,7 @@ Now create the config file and append your twitter tokens.
     access_token        =
     access_token_secret =
     EOF
+    chmod 600 twooris.cfg
 
 # Usage #
 
