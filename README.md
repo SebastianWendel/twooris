@@ -26,6 +26,12 @@ There are no special platform dependencies, but you need to install some python 
     python setup.py build
     python setup.py install
 
+## Twooris installation ##
+
+    git clone https://github.com/sebwendel/twooris.git
+    mv twooris /opt
+    cd /opt/twooris
+
 ## Twitter registration ##
 
 Register your new read- and writable application at twitter and keep the tokens for the configuration.
@@ -36,7 +42,7 @@ Register your new read- and writable application at twitter and keep the tokens 
 
 Now create the config file and append your twitter tokens.
 
-    cat >> twooris.cfg << 'EOF'
+    cat > twooris.cfg << 'EOF'
     [dooris]
     dooris_url          = http://dooris.koalo.de/door.txt
  
