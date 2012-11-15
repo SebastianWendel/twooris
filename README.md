@@ -55,7 +55,7 @@ Now create the config file and append your twitter tokens.
 
 Please change permissions of the config file to prevent unauthorized access.
 
-    chmod 600 twooris.cfg
+    chmod 0600 twooris.cfg
 
 # Usage #
 
