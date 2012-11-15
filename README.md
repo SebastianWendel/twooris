@@ -65,9 +65,7 @@ Have a lock at the github issues section. There's still some work to do, patches
 
 # License and Author #
 
-Author: Sebastian Wendel, (<packages@sourceindex.de>)
-
-Copyright: 2012, SourceIndex IT-Services
+Author: Sebastian Wendel, (<packages@sourceindex.de>) Copyright: 2012, SourceIndex IT-Services
 
 Licensed under the GNU GENERAL PUBLIC LICENSE (the "License");
 you may not use this file except in compliance with the License.
