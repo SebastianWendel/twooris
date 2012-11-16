@@ -7,7 +7,7 @@ Twooris is a simple wrapper script for the attraktor dooris door status system t
 There are no special platform dependencies, but you need to install some python librarys.
 
 ## Debian or Ubuntu ##
-
+    sudo aptitude update
     sudo aptitude install python-simplejson python-httplib2 python-oauth2
 
 ## CentOS or RedHat ##
@@ -22,7 +22,7 @@ There are no special platform dependencies, but you need to install some python 
     tar xzf python-twitter-x.x.x.tar.gz
     cd python-twitter-x.x.x
     python setup.py build
-    python setup.py install
+    sudo python setup.py install
 
 ## twitter registration ##
 

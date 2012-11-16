@@ -2,7 +2,7 @@
 
 __author__      = "sebastian wendel"
 __copyright__   = "copyright 2012, attraktor e.v."
-__license__     = "glp"
+__license__     = "GPL"
 __version__     = "0.0.1"
 
 config_file     = "twooris.cfg"
@@ -27,7 +27,7 @@ if os.path.exists(semaphore_file):
   input_str = file_input.readlines()
   if str(input_str[0]) != '':
     if not html_lines[0] in input_str[0]:
-      status = api.PostUpdate('The door is ' + html_lines[0] + '.')
+      status = api.PostUpdate('The Attraktor door is ' + html_lines[0] + '.')
       print status.text
   file_input.close()
 
