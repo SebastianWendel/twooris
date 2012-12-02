@@ -9,18 +9,33 @@ config_file     = "twooris.cfg"
 semaphore_file  = '/tmp/twooris'
 
 import os
+import time
+import datetime
 import ConfigParser
 import urllib2
 import twitter
+import RPi.GPIO as GPIO
 
 config = ConfigParser.RawConfigParser(allow_no_value=True)
 config.read(config_file)
 
-response = urllib2.urlopen(config.get("dooris", "dooris_url"))
-html = response.read()
-html_lines = html.splitlines()
-
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(config.get("gpios", "led"), GPIO.OUT)
+GPIO.setup(config.get("gpios", "switch"), GPIO.OUT)
 api = twitter.Api(consumer_key=config.get("twitter", "consumer_key"), consumer_secret=config.get("twitter", "consumer_secret"), access_token_key=config.get("twitter", "access_token_key"), access_token_secret=config.get("twitter", "access_token_secret"))
+
+
+t = datetime.datetime.now()
+print "Epoch Seconds:", time.mktime(t.timetuple())
+
+'''
+var=1
+while var==1 :
+    GPIO.output(18, False)
+    time.sleep(1)
+    GPIO.output(18, True)
+    time.sleep(1)
+
 
 if os.path.exists(semaphore_file):
   file_input = open(semaphore_file, "r+")
@@ -34,3 +49,4 @@ if os.path.exists(semaphore_file):
 file_input = open(semaphore_file, "wb")
 file_input.write(html);
 file_input.close()
+'''

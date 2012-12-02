@@ -36,10 +36,8 @@ Register your new read- and writable application at twitter and keep the tokens 
 <https://dev.twitter.com/apps>
 
 # Installation #
-
-    git clone https://github.com/sebwendel/twooris.git
-    mv twooris /opt
     cd /opt/twooris
+    git clone https://github.com/sebwendel/twooris.git
 
 # Configuration #
 
@@ -48,7 +46,7 @@ Now create the config file, append the dooris.txt url and your twitter tokens.
     cat > twooris.cfg << 'EOF'
     [gpios]
     led                 = 18
-    switch              = 22
+    switch              = 25
  
     [twitter]
     consumer_key        = A1r2xxgbObRUd5eEFi5TXp4e
@@ -57,7 +55,7 @@ Now create the config file, append the dooris.txt url and your twitter tokens.
     access_token_secret = GXFKePckfUvagiAfNxu2cqAjT+ZCFSm6dNh7gXtKkQFbW8M4K7ZBtPbG6duFDG6m
     
     [messeges]
-    open                = Der Attraktor ist geöffnet. Komm herein und werde Teil.
+    open                = Der Attraktor ist geöffnet. Kommt herein und werdet Teil.
     closed              = Der Attraktor ist geschlossen. Gehen sie weiter, es gibt hier nichts mehr zu sehen.
     EOF
 
@@ -70,7 +68,7 @@ Please change permissions of the config file to prevent unauthorized access.
 You can start the script or add it to a non privileged users crontab like the following:
 
     crontab -e
-    */5 * * * * /opt/twooris/twooris.py
+    */5 * * * * /opt/twooris/twooris/twooris.py
 
 # ToDos and Issues #
 Have a lock at the github issues section. There's still some work to do, patches are welcome.
