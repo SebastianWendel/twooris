@@ -16,13 +16,18 @@ There are no special platform dependencies, but you need to install some python 
     sudo rpm -Uvh epel-release-6*.rpm
     sudo yum install python-simplejson python-httplib2 python-oauth2
 
-## install the python-twitter library ##
+## Install the python-twitter library ##
 
     wget http://python-twitter.googlecode.com/files/python-twitter-x.x.x..tar.gz
     tar xzf python-twitter-x.x.x.tar.gz
     cd python-twitter-x.x.x
     python setup.py build
     sudo python setup.py install
+
+## Create Group and User
+    sudo groupadd twooris
+    sudo useradd -s /bin/bash -r -m -g twooris -d /opt/twooris twooris
+    sudo su - twooris
 
 ## twitter registration ##
 
@@ -41,14 +46,19 @@ Register your new read- and writable application at twitter and keep the tokens 
 Now create the config file, append the dooris.txt url and your twitter tokens.
 
     cat > twooris.cfg << 'EOF'
-    [dooris]
-    dooris_url          =
+    [gpios]
+    led                 = 18
+    switch              = 22
  
     [twitter]
-    consumer_key        =
-    consumer_secret     =
-    access_token        =
-    access_token_secret =
+    consumer_key        = A1r2xxgbObRUd5eEFi5TXp4e
+    consumer_secret     = sqK5wwXkBKAlLBuP93fu6rDuv6Dt3NtpZWhTUFzU89kxVyMAUp3as9zRjDYCNrok
+    access_token        = 3nAuU+NvoF3ymMjSaPLgQzQMQbiGRfK39L1wHA1DhjYbMDTx
+    access_token_secret = GXFKePckfUvagiAfNxu2cqAjT+ZCFSm6dNh7gXtKkQFbW8M4K7ZBtPbG6duFDG6m
+    
+    [messeges]
+    open                = Der Attraktor ist geöffnet, komm herein und werde Teil.
+    closed              = Der Attraktor ist geschlossen, gehen sie weiter es gibt hier nichts mehr zu sehen.
     EOF
 
 Please change permissions of the config file to prevent unauthorized access.
