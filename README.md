@@ -51,7 +51,7 @@ Now create the config file, append the dooris.txt url and your twitter tokens.
     [twitter]
     consumer_key        = A1r2xxgbObRUd5eEFi5TXp4e
     consumer_secret     = sqK5wwXkBKAlLBuP93fu6rDuv6Dt3NtpZWhTUFzU89kxVyMAUp3as9zRjDYCNrok
-    access_token        = 3nAuU+NvoF3ymMjSaPLgQzQMQbiGRfK39L1wHA1DhjYbMDTx
+    access_token_key    = 3nAuU+NvoF3ymMjSaPLgQzQMQbiGRfK39L1wHA1DhjYbMDTx
     access_token_secret = GXFKePckfUvagiAfNxu2cqAjT+ZCFSm6dNh7gXtKkQFbW8M4K7ZBtPbG6duFDG6m
     
     [messeges]
