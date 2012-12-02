@@ -57,8 +57,8 @@ Now create the config file, append the dooris.txt url and your twitter tokens.
     access_token_secret = GXFKePckfUvagiAfNxu2cqAjT+ZCFSm6dNh7gXtKkQFbW8M4K7ZBtPbG6duFDG6m
     
     [messeges]
-    open                = Der Attraktor ist geöffnet, komm herein und werde Teil.
-    closed              = Der Attraktor ist geschlossen, gehen sie weiter es gibt hier nichts mehr zu sehen.
+    open                = Der Attraktor ist geöffnet. Komm herein und werde Teil.
+    closed              = Der Attraktor ist geschlossen. Gehen sie weiter, es gibt hier nichts mehr zu sehen.
     EOF
 
 Please change permissions of the config file to prevent unauthorized access.
