@@ -1,47 +1,45 @@
 # Description #
-
-Twooris is a simple wrapper script for the attraktor dooris door status system to post open or closed status notification on twitter.
+Twooris is a simple python script for the raspberry pi plattform to post the attraktors door open or closed status on twitter.
 
 # Requirements #
-
-There are no special platform dependencies, but you need to install some python librarys.
+You need a raspberry pi board, two gpio's and some software packages explained in the following.
 
 ## Debian or Ubuntu ##
+
     sudo aptitude update
     sudo aptitude install python-simplejson python-httplib2 python-oauth2
 
 ## CentOS or RedHat ##
 
-    wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm
-    sudo rpm -Uvh epel-release-6*.rpm
+    sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm
     sudo yum install python-simplejson python-httplib2 python-oauth2
 
 ## Install the python-twitter library ##
 
-    wget http://python-twitter.googlecode.com/files/python-twitter-x.x.x..tar.gz
-    tar xzf python-twitter-x.x.x.tar.gz
-    cd python-twitter-x.x.x
+    wget http://python-twitter.googlecode.com/files/python-twitter-0.8.2.tar.gz
+    tar xzf python-twitter-0.8.2.tar.gz
+    cd python-twitter-0.8.2
     python setup.py build
     sudo python setup.py install
 
 ## Create Group and User
+
     sudo groupadd twooris
-    sudo useradd -s /bin/bash -r -m -g twooris -d /opt/twooris twooris
+    sudo useradd -s /bin/bash -r -m -g twooris twooris
     sudo su - twooris
 
 ## twitter registration ##
-
 Register your new read- and writable application at twitter and keep the tokens for the configuration.
 
 <https://dev.twitter.com/apps>
 
 # Installation #
-    cd /opt/twooris
+
+    cd /opt
     git clone https://github.com/sebwendel/twooris.git
 
 # Configuration #
-
-Now create the config file, append the dooris.txt url and your twitter tokens.
+Now create the config file, change the twitter tokens you just created, maybe your gpios and the text messeges.
 
     cat > twooris.cfg << 'EOF'
     [gpios]
@@ -55,8 +53,8 @@ Now create the config file, append the dooris.txt url and your twitter tokens.
     access_token_secret = GXFKePckfUvagiAfNxu2cqAjT+ZCFSm6dNh7gXtKkQFbW8M4K7ZBtPbG6duFDG6m
     
     [messeges]
-    open                = Der Attraktor ist geöffnet. Kommt herein und werdet Teil.
-    closed              = Der Attraktor ist geschlossen. Gehen sie weiter, es gibt hier nichts mehr zu sehen.
+    open                = Der Attraktor ist geöffnet.
+    closed              = Der Attraktor ist geschlossen.
     EOF
 
 Please change permissions of the config file to prevent unauthorized access.
@@ -65,11 +63,13 @@ Please change permissions of the config file to prevent unauthorized access.
 
 # Usage #
 
-You can start the script or add it to a non privileged users crontab like the following:
+You can start the script or add it to a users crontab like the following:
 
     crontab -e
-    */5 * * * * /opt/twooris/twooris/twooris.py
+    */5 * * * * sudo /opt/twooris/twooris/twooris.py
 
+IMPORTANT: Please note that the script needs root permissions to access '/dev/mem' to manage the raspberry pi gpios.
+    
 # ToDos and Issues #
 Have a lock at the github issues section. There's still some work to do, patches are welcome.
 
