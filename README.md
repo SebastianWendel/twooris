@@ -7,12 +7,12 @@ You need a raspberry pi board, two gpio's and some software packages explained i
 ## Debian or Ubuntu ##
 
     sudo aptitude update
-    sudo aptitude install python-simplejson python-httplib2 python-oauth2
+    sudo aptitude install git-core python-simplejson python-httplib2 python-oauth2
 
 ## CentOS or RedHat ##
 
     sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm
-    sudo yum install python-simplejson python-httplib2 python-oauth2
+    sudo yum install git python-simplejson python-httplib2 python-oauth2
 
 ## Install the python-twitter library ##
 
@@ -26,7 +26,6 @@ You need a raspberry pi board, two gpio's and some software packages explained i
 
     sudo groupadd twooris
     sudo useradd -s /bin/bash -r -m -g twooris twooris
-    sudo su - twooris
 
 ## twitter registration ##
 Register your new read- and writable application at twitter and keep the tokens for the configuration.
@@ -36,9 +35,15 @@ Register your new read- and writable application at twitter and keep the tokens 
 # Installation #
 
     cd /opt
-    git clone https://github.com/sebwendel/twooris.git
+    sudo git clone https://github.com/sebwendel/twooris.git
+    sudo chown -R twooris:twooris /opt/twooris
 
 # Configuration #
+Now switch the user context and change to the application directory.
+
+    sudo su - twooris
+    cd /opt/twooris
+
 Now create the config file, change the twitter tokens you just created, maybe your gpios and the text messeges.
 
     cat > twooris.cfg << 'EOF'
