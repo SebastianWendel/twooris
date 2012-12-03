@@ -46,6 +46,8 @@ Now switch the user context and change to the application directory.
 
 Now create the config file, change the twitter tokens you just created, maybe your gpios and the text messeges.
 
+IMPORTANT: Please note that i used the BCM pin layout for the gpio numbers. For more Informations please read <http://elinux.org/RPi_Low-level_peripherals> .
+
     cat > twooris.cfg << 'EOF'
     [gpios]
     led                 = 18
