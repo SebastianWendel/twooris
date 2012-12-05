@@ -70,13 +70,13 @@ if os.path.exists(temp_file):
   file_input.close()
   # IF TEMP INPUT IS NOT EMPTY CONTINUE
   if str(input_str[0]) != "":
-    file_input = open(temp_file, "wb")
-    file_input.write(str(input_value) + "\n")
-    file_input.write(str(timestamp) + "\n")
-    file_input.write(str(timestamp))
-    file_input.close()
-    # IF TEMP AND CURRENT STATE IS NOT IDENTICAL POST ON TWITTER
+    # IF TEMP AND CURRENT STATE IS NOT IDENTICAL POST ON TWITTER AND WRITE TO FILE
     if not str(input_value).rstrip() in input_str[0].rstrip():
+      file_input = open(temp_file, "wb")
+      file_input.write(str(input_value) + "\n")
+      file_input.write(str(timestamp) + "\n")
+      file_input.write(str(timestamp))
+      file_input.close()
       if input_value == False:
         # IF DOOR IS OPEN POST MESSEGE OPEN ON TWITTER
         status = api.PostUpdate(time.strftime("%x %X ") + config.get("messeges", "open"))
@@ -89,6 +89,13 @@ if os.path.exists(temp_file):
         GPIO.output(gpio_led, True)
       print status.text
       sys.exit(0)
+    else:
+      # WRITE CURRENT STATE TO TEMP FILE IF FILE EXISTS
+      file_input = open(temp_file, "wb")
+      file_input.write(str(input_value) + "\n")
+      file_input.write(str(timestamp) + "\n")
+      file_input.write(str(latest_change))
+      file_input.close()
 
 # WRITE CURRENT STATE TO TEMP FILE IF FILE NOT EXISTS
 file_input = open(temp_file, "wb")
