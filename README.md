@@ -73,7 +73,7 @@ Please change permissions of the config file to prevent unauthorized access.
 You can start the script or add it to a users crontab like the following:
 
     crontab -e
-    */5 * * * * sudo /opt/twooris/twooris/twooris.py
+    */5 * * * * sudo /opt/twooris/twooris.py
 
 IMPORTANT: Please note that the script needs root permissions to access '/dev/mem' to manage the raspberry pi gpios.
     
