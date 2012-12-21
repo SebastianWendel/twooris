@@ -25,7 +25,7 @@ You need a raspberry pi board, two gpio's and some software packages explained i
 ## Create Group and User
 
     sudo groupadd twooris
-    sudo useradd -s /bin/bash -r -m -g twooris twooris
+    sudo useradd -s /bin/bash -r -m -G sudo,twooris twooris
 
 ## twitter registration ##
 Register your new read- and writable application at twitter and keep the tokens for the configuration.
@@ -60,8 +60,8 @@ IMPORTANT: Please note that i used the BCM pin layout for the gpio numbers. For 
     access_token_secret = GXFKePckfUvagiAfNxu2cqAjT+ZCFSm6dNh7gXtKkQFbW8M4K7ZBtPbG6duFDG6m
     
     [messeges]
-    open                = Der Attraktor ist geöffnet.
-    closed              = Der Attraktor ist geschlossen.
+    open                = Die Eingangstür wurde geöffnet.
+    closed              = Die Eingangstür wurde geschlossen.
     EOF
 
 Please change permissions of the config file to prevent unauthorized access.
