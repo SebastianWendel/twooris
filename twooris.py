@@ -81,12 +81,12 @@ if os.path.exists(temp_file):
         # IF DOOR IS OPEN POST MESSEGE OPEN ON TWITTER
         status = api.PostUpdate(time.strftime("%x %X ") + config.get("messeges", "open"))
         # IF DOOR IS OPEN DISABLE THE LED
-        GPIO.output(gpio_led, False)
+        GPIO.output(gpio_led, True)
       else:
         # IF DOOR IS CLOSED POST MESSEGE CLOSED ON TWITTER
         status = api.PostUpdate(time.strftime("%x %X ") + config.get("messeges", "closed"))
         # IF DOOR IS CLOSED ENABLE THE LED
-        GPIO.output(gpio_led, True)
+        GPIO.output(gpio_led, False)
       print status.text
       sys.exit(0)
     else:
