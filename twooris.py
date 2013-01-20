@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 #-----------------------------------------------------------------------------------------------------
-__author__      = "sebastian wendel"
-__copyright__   = "copyright 2012, attraktor e.v."
-__license__     = "GPL"
-__version__     = "0.2.1"
+# author      = "sebastian wendel, sourceindex it-services, hamburg"
+# copyright   = "copyright 2013, attraktor e.v. hamburg"
+# license     = "GPL"
+# version     = "0.3.0"
 #-----------------------------------------------------------------------------------------------------
 
 import os

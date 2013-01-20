@@ -2,49 +2,50 @@
 Twooris is a simple python script for the raspberry pi plattform to post the attraktors door open or closed status on twitter.
 
 # Requirements #
-You need a raspberry pi board, two gpio's and some software packages explained in the following.
+You need a raspberry pi board, two gpio's and some packages explained in the following.
 
-## Debian or Ubuntu ##
+## install packages ##
 
     sudo aptitude update
-    sudo aptitude install git-core python-simplejson python-httplib2 python-oauth2
+    sudo aptitude install -y git-core python-virtualenv python-pip
 
-## CentOS or RedHat ##
 
-    sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-7.noarch.rpm
-    sudo yum install git python-simplejson python-httplib2 python-oauth2
+## create credentials and sudo privileges ##
 
-## Install the python-twitter library ##
+    sudo useradd --user-group --create-home --home-dir /opt/twooris --shell /bin/bash --system twooris
+	echo "twooris ALL = NOPASSWD: /opt/twooris/twooris/twooris.py" | sudo tee -a /etc/sudoers  
 
-    wget http://python-twitter.googlecode.com/files/python-twitter-0.8.2.tar.gz
-    tar xzf python-twitter-0.8.2.tar.gz
-    cd python-twitter-0.8.2
-    python setup.py build
-    sudo python setup.py install
 
-## Create Group and User
+## install source files ##
 
-    sudo groupadd twooris
-    sudo useradd -s /bin/bash -r -m -G sudo,twooris twooris
+    sudo git clone https://github.com/sourceindex/twooris.git /opt/twooris/twooris
 
+
+## setup python virtualenv and install modules ##
+
+	sudo su - twooris 
+	virtualenv /opt/twooris/pyvenv
+	source /opt/twooris/pyvenv/bin/activate
+	echo "source /opt/twooris/pyvenv/bin/activate" | tee -a /opt/twooris/.profile
+
+    
+## install the twitter library ##
+
+    pip install twitter
+
+ 
 ## twitter registration ##
 Register your new read- and writable application at twitter and keep the tokens for the configuration.
 
 <https://dev.twitter.com/apps>
 
-# Installation #
-
-    cd /opt
-    sudo git clone https://github.com/sebwendel/twooris.git
-    sudo chown -R twooris:twooris /opt/twooris
 
 # Configuration #
-Now switch the user context and change to the application directory.
+Now change to the application directory.
 
-    sudo su - twooris
-    cd /opt/twooris
+    cd /opt/twooris/twooris
 
-Now create the config file, change the twitter tokens you just created, maybe your gpios and the text messeges.
+Create the config file, change the twitter tokens you just created, maybe your gpios and the text messeges.
 
 IMPORTANT: Please note that i used the BCM pin layout for the gpio numbers. For more Informations please read <http://elinux.org/RPi_Low-level_peripherals> .
 
@@ -73,7 +74,7 @@ Please change permissions of the config file to prevent unauthorized access.
 You can start the script or add it to a users crontab like the following:
 
     crontab -e
-    */5 * * * * sudo /opt/twooris/twooris.py
+    */5 * * * * sudo /opt/twooris/twooris/twooris.py
 
 IMPORTANT: Please note that the script needs root permissions to access '/dev/mem' to manage the raspberry pi gpios.
     
@@ -82,7 +83,7 @@ Have a lock at the github issues section. There's still some work to do, patches
 
 # License and Author #
 
-Author: Sebastian Wendel, (<packages@sourceindex.de>) Copyright: 2012, Attraktor e.V. Hamburg
+Author: Sebastian Wendel, (<packages@sourceindex.de>) Copyright: 2013, Attraktor e.V. Hamburg
 
 Licensed under the GNU GENERAL PUBLIC LICENSE (the "License");
 you may not use this file except in compliance with the License.
